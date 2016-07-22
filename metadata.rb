@@ -9,6 +9,4 @@ version '0.1.0'
 source_url 'https://github.com/EagleGenomics-cookbooks/Trimmomatic'
 issues_url 'https://github.com/EagleGenomics-cookbooks/Trimmomatic/issues'
 
-# depends 'build-essential'
-depends 'magic_shell'
 depends 'java'

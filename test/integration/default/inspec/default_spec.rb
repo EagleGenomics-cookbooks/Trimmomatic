@@ -8,13 +8,13 @@ end
 # Check that Java was installed
 describe command('which java') do
   its('exit_status') { should eq 0 }
-  its('stdout') { should match %r{/usr/bin/java} }
+  its('stdout') { should match %r{/java} }
 end
 
 # Check that we have the correct version of Java
 describe command('java -version') do
   its('exit_status') { should eq 0 }
-  its('stderr') { should match %r{1.8} }
+  its('stderr') { should match(/1.8/) }
   # its(:stdout) { should contain ENV['JAVA_VERSION'] }
 end
 
@@ -31,5 +31,5 @@ end
 # Check that our tool works
 describe command('java -jar /usr/local/Trimmomatic-0.36/trimmomatic-0.36.jar -version') do
   its('exit_status') { should eq 0 }
-  its('stdout') { should match %r{0.36} }
+  its('stdout') { should match(/0.36/) }
 end
