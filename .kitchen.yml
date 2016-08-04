@@ -8,12 +8,11 @@ driver:
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
 verifier:
   name: inspec
   # sudo: false # if 'true' (default) inSpec will run tests as 'root', rather than 'kitchen'
   format: doc
+  # sudo_command: '. /etc/profile;' # needed for centos
 
 platforms:
   - name: ubuntu-14.04
