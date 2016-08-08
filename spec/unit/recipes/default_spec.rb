@@ -26,4 +26,8 @@ describe 'Trimmomatic::default' do
   it 'includes the `java` recipe' do
     expect(chef_run).to include_recipe('java')
   end
+
+  it 'creates TRIMMOMATIC_JAR_PATH environment variable' do
+    expect(chef_run).to add_magic_shell_environment('TRIMMOMATIC_JAR_PATH')
+  end
 end

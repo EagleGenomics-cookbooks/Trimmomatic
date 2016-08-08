@@ -15,7 +15,6 @@ end
 describe command('java -version') do
   its('exit_status') { should eq 0 }
   its('stderr') { should match(/1.8/) }
-  # its(:stdout) { should contain ENV['JAVA_VERSION'] }
 end
 
 # Check that the Trimmomatic installation directory was created successfully
@@ -32,4 +31,8 @@ end
 describe command('java -jar /usr/local/Trimmomatic-0.36/trimmomatic-0.36.jar -version') do
   its('exit_status') { should eq 0 }
   its('stdout') { should match(/0.36/) }
+end
+
+describe command('echo $TRIMMOMATIC_JAR_PATH') do
+  its('stdout') { should match(/trimmomatic/) }
 end

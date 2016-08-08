@@ -5,7 +5,4 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # Trimmomatic attributes
 default['Trimmomatic']['version'] = '0.36'
-default['Trimmomatic']['file_base'] = 'Trimmomatic-' + node['Trimmomatic']['version']
-default['Trimmomatic']['file_name'] = node['Trimmomatic']['file_base'] + '.zip'
-default['Trimmomatic']['download_url'] = 'http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/' + node['Trimmomatic']['file_name']
-default['Trimmomatic']['install_dir'] = '/usr/local/'
+default['Trimmomatic']['install_dir'] = '/usr/local'

@@ -11,3 +11,4 @@ issues_url 'https://github.com/EagleGenomics-cookbooks/Trimmomatic/issues'
 
 depends 'apt'
 depends 'java'
+depends 'magic_shell'

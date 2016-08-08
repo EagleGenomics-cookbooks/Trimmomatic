@@ -12,7 +12,7 @@ verifier:
   name: inspec
   # sudo: false # if 'true' (default) inSpec will run tests as 'root', rather than 'kitchen'
   format: doc
-  # sudo_command: '. /etc/profile;' # needed for centos
+  sudo_command: '. /etc/profile;'
 
 platforms:
   - name: ubuntu-14.04
