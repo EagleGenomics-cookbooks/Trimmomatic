@@ -1,4 +1,4 @@
-# Trimmomatic
+# trimmomatic
 
 Cookbook to install Trimmomatic: A flexible read trimming tool for Illumina NGS data
 

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: Trimmomatic
+# Cookbook Name:: trimmomatic
 # Spec:: default
 #
 # Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
@@ -7,7 +7,7 @@
 
 require 'spec_helper'
 
-describe 'Trimmomatic::default' do
+describe 'trimmomatic::default' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   # default: make sure the converge works

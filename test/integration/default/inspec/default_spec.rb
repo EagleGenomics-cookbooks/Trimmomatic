@@ -1,6 +1,6 @@
 # Tests to check if the infrastructure we expect is available
 
-# we need to have unzip capabilities to extract the Trimmomatic binaries
+# we need to have unzip capabilities to extract the trimmomatic binaries
 describe package 'unzip' do
   it { should be_installed }
 end
@@ -17,12 +17,12 @@ describe command('java -version') do
   its('stderr') { should match(/1.8/) }
 end
 
-# Check that the Trimmomatic installation directory was created successfully
+# Check that the trimmomatic installation directory was created successfully
 describe file('/usr/local/Trimmomatic-0.36') do
   it { should be_directory }
 end
 
-# Check that the Trimmomatic executable is where it should be
+# Check that the trimmomatic executable is where it should be
 describe file('/usr/local/Trimmomatic-0.36/trimmomatic-0.36.jar') do
   it { should be_file }
 end

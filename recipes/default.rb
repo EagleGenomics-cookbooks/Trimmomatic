@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: Trimmomatic
+# Cookbook Name:: trimmomatic
 # Recipe:: default
 #
 # Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
@@ -16,10 +16,10 @@ end
 
 ##########################################################
 
-trimmomatic_install_dir = node['Trimmomatic']['install_dir']
-trimmomatic_base = 'Trimmomatic-' + node['Trimmomatic']['version']
+trimmomatic_install_dir = node['trimmomatic']['install_dir']
+trimmomatic_base = 'Trimmomatic-' + node['trimmomatic']['version']
 trimmomatic_download_file = trimmomatic_base + '.zip'
-trimmomatic_jar_file = 'trimmomatic-' + node['Trimmomatic']['version'] + '.jar'
+trimmomatic_jar_file = 'trimmomatic-' + node['trimmomatic']['version'] + '.jar'
 trimmomatic_download_url = 'http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/' + trimmomatic_download_file
 temp_file_location = File.join(Chef::Config[:file_cache_path], trimmomatic_download_file)
 
