@@ -30,4 +30,8 @@ describe 'trimmomatic::default' do
   it 'creates TRIMMOMATIC_JAR_PATH environment variable' do
     expect(chef_run).to add_magic_shell_environment('TRIMMOMATIC_JAR_PATH')
   end
+
+  it 'creates TRIMMOMATIC_VERSION environment variable' do
+    expect(chef_run).to add_magic_shell_environment('TRIMMOMATIC_VERSION')
+  end
 end

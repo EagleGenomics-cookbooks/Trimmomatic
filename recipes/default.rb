@@ -35,3 +35,7 @@ end
 magic_shell_environment 'TRIMMOMATIC_JAR_PATH' do
   value File.join(trimmomatic_install_dir, trimmomatic_base, trimmomatic_jar_file)
 end
+
+magic_shell_environment 'TRIMMOMATIC_VERSION' do
+  value node['trimmomatic']['version']
+end
