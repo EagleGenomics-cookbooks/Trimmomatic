@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'test-kitchen'
 gem 'berkshelf'
 gem 'chef-zero'
+gem 'chefspec'
 gem 'kitchen-docker'
 gem 'kitchen-inspec'
-gem 'chefspec'
+gem 'test-kitchen'
