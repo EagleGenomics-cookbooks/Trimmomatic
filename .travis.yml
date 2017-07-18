@@ -27,10 +27,12 @@ script:
 - KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
 notifications:
   slack:
+    on_success: change
+    on_failure: change
     secure: iodyDihhKye5FqJslNLCMEPA+UmMRcNBGdehHSardgTrY4LFkLyf4jtq4+YISmlqF6B0LlsyAQdKSnkX0TU91JgkOQEsz93O6IU3nBg73CKAEZGg19e7nNStyff6IAtiLo/N7OTs5WtNUQjo8psCwNhIOVEpyGc345hDd5mjymFsliXqEMyo9bp2ZDoaEaNMgwCc0PQL05bOCmDqGHGQl/WnFByaZOcH0p1LX/7gk0uvp6c7VJCKK7Xmsh7qccaN48Q81XuFhmG/4lGexW3CF1vK2mWHtxzcyuGG5IZ96JyDIcsRRiO3gSR+8qEnYGuDxAeTOvq1oMBx9r2nkCdQUJxExMf59NSL0fpKkzpOnbp4mSTQeRR29O1QUdoeINyDtZeK7QfLx7kfK9LYoaCatAFctHp5lV2WYtOiQQ6ZI1DjyM0GvergUTI09sdf6lUVJ/t/2cLO7oBdp+Yo5JHE4uNcmmm36UEVA2YAxbHnhYzb4wwyRM+CFOBzqWCDE158Uwwdw3IPFYs6Yw50aCTX4FoDAMK1poMGonofbzLJOccJ3ppEDLgGqJ6rpYoZ6xAm3gO1Fceapk55WfLCPYYcRIGJ7Onn0itSb3yShfrEA+Iv9v8W9OB1I6XXeUsaOOfLIk0MFiDIqXOh5G6A/uURHZYur8ImQ5JUHnu2c75HLp4=
   email:
     on_success: change
-    on_failure: always
+    on_failure: change
 after_success:
 - chmod +x trigger_dependent_build.sh
 - "./trigger_dependent_build.sh EagleGenomics-cookbooks trimmomatic-runnable private
