@@ -1,37 +1,28 @@
 #
-# Cookbook Name:: trimmomatic
+# Cookbook:: trimmomatic
 # Spec:: default
 #
-# Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
-##########################################################
+# Copyright:: 2019, The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
 describe 'trimmomatic::default' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
+  context 'When all attributes are default, on Ubuntu 18.04' do
+    let(:chef_run) do
+      # for a complete list of available platforms and versions see:
+      # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
+      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '18.04')
+      runner.converge(described_recipe)
+    end
 
-  # default: make sure the converge works
-  it 'converges successfully' do
-    expect { chef_run }.to_not raise_error
-  end
+    it 'converges successfully' do
+      expect { chef_run }.to_not raise_error
+    end
 
-  # make sure unzip is going to be installed as we need it to
-  # extract the tool binaries
-  it 'installs unzip' do
-    expect(chef_run).to install_package 'unzip'
-  end
-
-  # make sure the java recipe is included, as this will
-  # install the needed Java libraries for the tool
-  it 'includes the `java` recipe' do
-    expect(chef_run).to include_recipe('java')
-  end
-
-  it 'creates TRIMMOMATIC_JAR_PATH environment variable' do
-    expect(chef_run).to add_magic_shell_environment('TRIMMOMATIC_JAR_PATH')
-  end
-
-  it 'creates TRIMMOMATIC_VERSION environment variable' do
-    expect(chef_run).to add_magic_shell_environment('TRIMMOMATIC_VERSION')
+    # make sure the java recipe is included, as this will
+    # install the needed Java libraries for the tool
+    it 'includes the `java` recipe' do
+      expect(chef_run).to include_recipe('java')
+    end
   end
 end

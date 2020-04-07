@@ -1,33 +1,29 @@
-sudo: required
-dist: trusty
+dist: xenial
+
+before_install:
+  - wget https://packages.chef.io/files/stable/chefdk/3.7.23/ubuntu/16.04/chefdk_3.7.23-1_amd64.deb
+  - sudo dpkg -i chefdk_3.7.23-1_amd64.deb
+  - chef --version
+
 install: echo "skip bundle install"
+
 branches:
   only:
   - master
-services: docker
+
 env:
-  global:
-  - RUBYOPT="-W0"
-  - secure: E/p/O/NhtAPtPuN26sypCtlvqfwfkEKbLTObo7zPevpjdbaY4sbNY/ZNWj6wILORUIYS9TMWHIffZGCV70M+bAFI953PSt5NOB3mf2kmvL7hTF6HucZF/XL0FRPaD1Vhxt0NycCS+px+2L8nfMl7F/vQdhP5CMYl4gSAeiCFzb/JGPPypaqy+Wxin7xhubPIoaab8sV5wchUy7gqIzYa1mfAwuf1VEZOM6PJOjrK1Fl/6ttjXu2sqG9L/FozPTKOuxuMyn/qU20gA0pkPOyS1HPqdjv/4/11BtDq9EefcWek6/Nsc4c65/9SP+kjsq7g4Ndci23g/hkNkEaZkjErE44UQPeRGN+fU3eAFo6bktyBi8nklxGRiBzVsMQNFZmGRgrdNCHzwCm1n5iJNVypKLNSg9lZrhrjF355Rrl/EtiZpAuMmsnrsxoVam6VGY/lGH6185FlK/V6DiyFpWyXvHhT6uRamPGFaNZZikegYiUMJNpjs4icD76t0cDadrR2ky+rTKLf8OZ45fDdXqZZdtGRu6TZ8HSuTmupg+yw7Y3GYLErzwZXG+kDyUmJCeu5xA9B5RyiM4y9xlrjPwSt/Kb4vgzFmIu7xRkviNkN7Zhj0U0ckzqNlbOcnq6L9S19eDWR7t1VPcL/lK3IZ35dFkqicsMg0RSI/i4vsOPygfU=
   matrix:
-  - CHEF_VERSION=current INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1804
+
 before_script:
 - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
   -N DOCKER )
 - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 - chef gem install kitchen-docker
 - /opt/chefdk/bin/chef exec rake tests
+
 script:
-- KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
-notifications:
-  slack:
-    on_success: change
-    on_failure: change
-    secure: iodyDihhKye5FqJslNLCMEPA+UmMRcNBGdehHSardgTrY4LFkLyf4jtq4+YISmlqF6B0LlsyAQdKSnkX0TU91JgkOQEsz93O6IU3nBg73CKAEZGg19e7nNStyff6IAtiLo/N7OTs5WtNUQjo8psCwNhIOVEpyGc345hDd5mjymFsliXqEMyo9bp2ZDoaEaNMgwCc0PQL05bOCmDqGHGQl/WnFByaZOcH0p1LX/7gk0uvp6c7VJCKK7Xmsh7qccaN48Q81XuFhmG/4lGexW3CF1vK2mWHtxzcyuGG5IZ96JyDIcsRRiO3gSR+8qEnYGuDxAeTOvq1oMBx9r2nkCdQUJxExMf59NSL0fpKkzpOnbp4mSTQeRR29O1QUdoeINyDtZeK7QfLx7kfK9LYoaCatAFctHp5lV2WYtOiQQ6ZI1DjyM0GvergUTI09sdf6lUVJ/t/2cLO7oBdp+Yo5JHE4uNcmmm36UEVA2YAxbHnhYzb4wwyRM+CFOBzqWCDE158Uwwdw3IPFYs6Yw50aCTX4FoDAMK1poMGonofbzLJOccJ3ppEDLgGqJ6rpYoZ6xAm3gO1Fceapk55WfLCPYYcRIGJ7Onn0itSb3yShfrEA+Iv9v8W9OB1I6XXeUsaOOfLIk0MFiDIqXOh5G6A/uURHZYur8ImQ5JUHnu2c75HLp4=
-  email:
-    on_success: change
-    on_failure: change
-after_success:
-- chmod +x trigger_dependent_build.sh
-- ./trigger_dependent_build.sh EagleGenomics-cookbooks trimmomatic-runnable private
-  $TRAVIS_ACCESS_TOKEN
+- /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+
+after_script:
+- /opt/chefdk/embedded/bin/kitchen destroy ${INSTANCE}

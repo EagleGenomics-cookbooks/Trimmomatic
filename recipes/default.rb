@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: trimmomatic
+# Cookbook:: trimmomatic
 # Recipe:: default
 #
-# Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
+# Copyright:: 2019, Eagle Genomics Ltd, All Rights Reserved.
 ##########################################################
 
 include_recipe 'apt' if node['platform_family'] == 'debian'
